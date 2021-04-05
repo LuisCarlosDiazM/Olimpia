@@ -1,0 +1,36 @@
+<h1>Listado General de Hinchas</h1>
+<p>El siguiente es un informe básico del registro de hinchas:</p>
+<p *ngIf="!hinchas"><em>Cargando...</em></p>
+<table class='table' *ngIf="hinchas">
+  <thead>
+    <tr>
+      <th>No. Identificación</th>
+      <th>Tipo Identificación</th>
+      <th>Nombre Completo</th>
+      <th>Telefono</th>
+      <th>Genero</th>
+      <th>EMail</th>
+      <th>Fecha de Nacimiento</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let hincha of hinchas">
+      <td>{{ hincha.numID }}</td>
+      <td [ngSwitch]="hincha.tipoID">
+        <span *ngSwitchCase="1">Tarjeta de Identidad</span>
+        <span *ngSwitchCase="2">Cedula de Extranjeria</span>
+        <span *ngSwitchCase="3">Pasaporte</span>
+        <span *ngSwitchDefault>Cedula de Ciudadania</span>
+      </td>
+      <td>{{ hincha.nombre }}</td>
+      <td>{{ hincha.telefono }}</td>
+      <td [ngSwitch]="hincha.genero">
+        <span *ngSwitchCase="0">Masculino</span>
+        <span *ngSwitchCase="1">Femenino</span>
+        <span *ngSwitchDefault>Otro</span>
+      </td>
+      <td>{{ hincha.eMail }}</td>
+      <td>{{ hincha.fechaNacimiento }}</td>
+    </tr>
+  </tbody>
+</table>

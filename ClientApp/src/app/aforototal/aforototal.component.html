@@ -1,0 +1,22 @@
+<h1>Listado General de Aforo</h1>
+<p>El siguiente es un informe básico del aforo actual del estadio:</p>
+<p *ngIf="!visitantes"><em>Cargando...</em></p>
+<p><b>Capacidad Total:</b> {{ parametros["capacidad"] }}</p>
+<p><b>Porcentaje de Aforo:</b> {{ parametros["aforo"] }}%</p>
+<p><b>Porcentaje de Ocupacion:</b> {{ parametros["porcentajeocupacion"] }}%</p>
+<table class='table' *ngIf="visitantes">
+  <thead>
+    <tr>
+      <th>No. Entrada</th>
+      <th>Identificación</th>
+      <th>Fecha de Ingreso</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let visitante of visitantes">
+      <td>{{ visitante.entrada }}</td>
+      <td>{{ visitante.numID }}</td>
+      <td>{{ visitante.fechaIngreso }}</td>
+    </tr>
+  </tbody>
+</table>

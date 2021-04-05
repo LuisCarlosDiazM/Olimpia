@@ -1,0 +1,26 @@
+<h1>Registrar Salida de Hinchas</h1>
+<form *ngIf="!resp">
+  <fieldset>
+    <legend>Por favor elija el número de cédula del hincha que va a salir</legend>
+    <section>
+      <label for="numID">Identificación: </label>
+      <select name="numID"
+              [(ngModel)]="NumeroID">
+        <option *ngFor="let visitante of visitantes"
+                [value]="visitante.numID">
+          <span>{{ visitante.numID }}</span>
+        </option>
+      </select>
+    </section>
+    <input value="Registrar Salida"
+           type="submit"
+           (click)="saveContact()" />
+  </fieldset>
+</form>
+<p [ngSwitch]="resp" *ngIf="resp">
+  <span *ngSwitchCase="0">El Hincha ha salido correctamente del estadio.</span>
+  <span *ngSwitchDefault>El Hincha NO aparece registrado adentro del estadio.</span>
+</p>
+<input value="Regresar"
+       type="button"
+       (click)="resp=null" *ngIf="resp" />

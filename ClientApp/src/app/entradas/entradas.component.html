@@ -1,0 +1,39 @@
+<h1>Registrar Ingreso de Hinchas</h1>
+<form *ngIf="!resp">
+  <fieldset>
+    <legend>Por favor elija el número de la entrada e ingrese el número de cédula del hincha que va a ingresar</legend>
+    <section>
+      <label for="numEntrada">Entrada: </label>
+      <select name="numEntrada"
+              [(ngModel)]="NumeroEntrada">
+        <option value="1" selected="selected">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+      </select>
+      <label for="numID">Identificación: </label>
+      <input name="numID"
+             type="number"
+             [(ngModel)]="NumeroID"
+             placeholder="ej. 12345678" />
+    </section>
+    <input value="Registrar"
+           type="submit"
+           (click)="saveContact()" />
+  </fieldset>
+</form>
+<p [ngSwitch]="resp" *ngIf="resp">
+  <span *ngSwitchCase="0">El Hincha ha ingresado correctamente al estadio.</span>
+  <span *ngSwitchCase="1">
+    El Hincha NO ha sido registrado en el listado de hinchas.<br />
+    Por favor registre sus datos antes de continuar.<br />
+    <a [routerLink]='["/hinchas"]'>
+      Haga click aqui para Registrar los datos del hincha.
+    </a>
+  </span>
+  <span *ngSwitchCase="3">El aforo máximo del Estadio está Lleno.</span>
+  <span *ngSwitchDefault>El Hincha aparece registrado ADENTRO del estadio.</span>
+</p>
+<input value="Regresar"
+       type="button"
+       (click)="resp=null" *ngIf="resp" />
