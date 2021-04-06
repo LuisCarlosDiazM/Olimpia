@@ -19,13 +19,14 @@ namespace Olimpia.Controllers
         public Hincha Get(int id) => DatosPrograma.HinchasEnum.ElementAt(id);
 
         [HttpPost]
-        public void Post([FromBody] Hincha value)
+        public int Post([FromBody] Hincha value)
         {
             if (DatosPrograma.HinchasEnum.Where(x => x.NumID == value.NumID).Count() == 0)
             {
                 DatosPrograma.HinchasEnum.Add(value);
+                return 0;
             }
-            else throw new AggregateException("Hincha ya existe.");
+            else return 1; // Hincha ya existe.
         }
 
         [HttpDelete("{id}")]

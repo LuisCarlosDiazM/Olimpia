@@ -1,66 +1,51 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core'
+import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'ab-entradas',
-  templateUrl: './entradas.component.html',
-  styleUrls: ['./entradas.component.css'],
+  selector: 'hinchas-app',
+  templateUrl: './hinchas.component.html',
 })
-export class EntradasComponent implements OnInit {
-  header = 'Contacts';
-  description = 'Manage your contact list';
-  numberOfContacts = 0;
-  counterStyleColor = 'green';
-  counterClass = 'warning';
-  formHidden = false;
-  workStatuses: Option[];
-  public contact: Contact;
-  public contacts: Contact[];
+export class HinchasComponent {
+  public NumID: string;
+  public TipoID: string
+  public Nombre: string
+  public Telefono: number
+  public Genero: string
+  public EMail: string
+  public FechaNacimiento: Date
+  private httpclient: HttpClient;
+  private baseURL: string;
+  public resp: string;
 
-  constructor() {}
-
-  ngOnInit(): void {
-    this.workStatuses = [
-      { id: 0, description: 'unknow' },
-      { id: 1, description: 'student' },
-      { id: 2, description: 'unemployed' },
-      { id: 3, description: 'employed' },
-    ];
-    this.contact = {
-      name: '',
-      isVIP: false,
-      gender: '',
-      workStatus: 0,
-      company: '',
-      education: '',
-    };
-    this.contacts = [];
+  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+    this.httpclient = http;
+    this.baseURL = baseUrl;
   }
 
   saveContact() {
-    this.contacts.push({ ...this.contact });
-    this.updateCounter();
-  }
-  deleteContact(contact: Contact) {
-    this.contacts = this.contacts.filter(c => c.name !== contact.name);
-    this.updateCounter();
-  }
-
-  private updateCounter() {
-    this.numberOfContacts = this.contacts.length;
-    this.counterClass = this.numberOfContacts === 0 ? 'warning' : 'success';
+    const headers = { 'Content-Type': 'application/json' };
+    const body = "{numID:" + this.NumID +
+      ",tipoID:'" + this.TipoID +
+      "',nombre:'" + this.Nombre +
+      "',telefono:'" + this.Telefono +
+      "',genero:'" + this.Genero +
+      "',eMail:'" + this.EMail +
+      "',fechaNacimiento:'" + this.FechaNacimiento +
+      "'}";
+    this.httpclient.post<any>(this.baseURL + 'api/Hinchas', body, { headers }).subscribe(data => {
+      this.resp = data;
+    }, error => {
+      console.error(error);
+    });
   }
 }
 
-export interface Option {
-  id: number;
-  description: string;
-}
-
-export interface Contact {
-  name: string;
-  isVIP: boolean;
-  gender: string;
-  workStatus: number | string;
-  company: string;
-  education: string;
+interface Hincha {
+  NumID: string;
+  TipoID: string
+  Nombre: string
+  Telefono: number
+  Genero: string
+  EMail: string
+  FechaNacimiento: Date
 }

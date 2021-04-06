@@ -1,81 +1,76 @@
-<h3>
-  {{ header }}: {{ description | uppercase }}
-</h3>
-<p [style.color]="counterStyleColor">You have <mark
-        class="{{ counterClass }}">{{ numberOfContacts }}</mark>
-  contacts right now.</p>
-<input value="Show Form"
-       type="button"
-       (click)="formHidden=false" />
-<input value="Hide Form"
-       type="button"
-       (click)="formHidden=true" />
-<form [ngClass]="{'hidden':formHidden}">
+<h1>Añadir registro en el Listado General de Hinchas</h1>
+<p>Por favor digite la información requerida.</p>
+<form>
   <fieldset>
-    <legend>Contact Form</legend>
     <section>
-      <label for="name">Name</label>
-      <input name="name"
-             type="text"
-             [(ngModel)]="contact.name"
-             placeholder="Contact name" />
+      <label for="idnum">Numero de identificación: </label>
+      <input name="idnum"
+             type="number"
+             [(ngModel)]="NumID"
+             placeholder="Ej. 12345678" />
     </section>
     <section>
-      <label for="isVIP">Is V.I.P.</label>
-      <input name="isVIP"
-             type="checkbox"
-             [(ngModel)]="contact.isVIP" />
-    </section>
-    <section>
-      <label for="gender">Gender</label>
-      <input name="gender"
-             value="m"
-             type="radio"
-             [(ngModel)]="contact.gender" />
-      <i>Male</i>
-      <input name="gender"
-             value="f"
-             type="radio"
-             [(ngModel)]="contact.gender" />
-      <i>Female</i>
-    </section>
-    <section>
-      <label for="workStatus">Work Status: </label>
-      <select name="workStatus"
-              [(ngModel)]="contact.workStatus">
-        <option *ngFor="let status of workStatuses"
-                [value]="status.id">
-          <span>{{ status.description }}</span>
-        </option>
+      <label for="tipodoc">Tipo Doc.: </label>
+      <select name="tipodoc"
+              [(ngModel)]="TipoID">
+        <option value="Cedula" selected="selected">Cédula de Ciudadanía</option>
+        <option value="TarjetaIdentidad">Tarjeta de Identidad</option>
+        <option value="Cedulaextranjeria">Cédula de Extranjería</option>
+        <option value="Pasaporte">Pasaporte</option>
       </select>
     </section>
-    <section *ngIf="contact.workStatus=='3'; else education">
-      <label for="company">Company Name</label>
-      <input name="company"
+    <section>
+      <label for="name">Nombre: </label>
+      <input name="name"
              type="text"
-             [(ngModel)]="contact.company" />
+             [(ngModel)]="Nombre"
+             placeholder="Nombre del hincha" />
     </section>
-    <ng-template #education>
-      <section>
-        <label for="education">Education</label>
-        <input name="education"
-               type="text"
-               [(ngModel)]="contact.education"
-               placeholder="Education" />
-      </section>
-    </ng-template>
-    <input value="Save"
+    <section>
+      <label for="telefono">Telefono: </label>
+      <input name="telefono"
+             type="number"
+             [(ngModel)]="Telefono"
+             placeholder="ej. 12345678" />
+    </section>
+    <section>
+      <label for="gender">Genero: </label>
+      <select name="gender"
+              [(ngModel)]="Genero">
+        <option value="Masculino">Masculino</option>
+        <option value="Femenino">Femenino</option>
+        <option value="Otro">Otro</option>
+      </select>
+    </section>
+    <section>
+      <label for="email">Correo Electrónico: </label>
+      <input name="email"
+             type="email"
+             [(ngModel)]="EMail"
+             placeholder="correo electrónico" />
+    </section>
+    <section>
+      <label for="fechanac">Fecha de nacimiento: </label>
+      <input name="fechanac"
+             type="date"
+             [(ngModel)]="FechaNacimiento"
+             placeholder="Fecha de nacimiento" />
+    </section>
+    <input value="Guardar informacion"
            type="submit"
            (click)="saveContact()" />
   </fieldset>
 </form>
-<pre>{{ contact | json }}</pre>
-<ul *ngIf="contacts.length>0; else empty">
-  <li *ngFor="let contact of contacts">
-    <span>{{ contact.name }}</span>
-    <input value="Delete"
-           type="button"
-           (click)="deleteContact(contact)" />
-  </li>
-</ul>
-<ng-template #empty> <i>No contacts yet</i> </ng-template>
+<p [ngSwitch]="resp" *ngIf="resp">
+  <span *ngSwitchCase="0">
+    El Hincha ha sido registrado correctamente.<br />
+    <a [routerLink]='["/entradas"]'>
+      Haga click aqui para ingresar hinchas al estadio.
+    </a>
+  </span>
+  <span *ngSwitchDefault>El Hincha ya está registrado en la base de datos.</span>
+</p>
+<input value="Regresar"
+       type="button"
+       (click)="resp=null" *ngIf="resp" />
+

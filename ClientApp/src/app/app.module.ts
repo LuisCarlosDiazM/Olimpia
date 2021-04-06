@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { hinchastotalComponent } from './hinchastotal/hinchastotal.component';
 import { EntradasComponent } from './entradas/entradas.component';
 import { SalidasComponent } from './salidas/salidas.component';
+import { HinchasComponent } from './hinchas/hinchas.component';
 import { aforototalComponent } from './aforototal/aforototal.component';
 
 @NgModule({
@@ -21,6 +22,7 @@ import { aforototalComponent } from './aforototal/aforototal.component';
     hinchastotalComponent,
     EntradasComponent,
     SalidasComponent,
+    HinchasComponent,
     aforototalComponent
   ],
   imports: [
@@ -35,6 +37,7 @@ import { aforototalComponent } from './aforototal/aforototal.component';
       { path: 'hinchastotal', component: hinchastotalComponent },
       { path: 'entradas', component: EntradasComponent },
       { path: 'salidas', component: SalidasComponent },
+      { path: 'hinchas', component: HinchasComponent },
       { path: 'aforototal', component: aforototalComponent },
     ])
   ],

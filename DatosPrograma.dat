@@ -1,12 +1,1 @@
-{
-  "Capacidad": 80018,
-  "Aforo": 30,
-  "HinchasEnum": [],
-  "VisitantesEnum": [
-    {
-      "NumID": "79762112",
-      "Entrada": 1,
-      "FechaIngreso": "2021-04-05T02:14:09.5417249-05:00"
-    }
-  ]
-}
+{"Capacidad":80018,"Aforo":30.0,"HinchasEnum":[{"NumID":"1234567890","TipoID":0,"Nombre":"Luis Diaz","Telefono":12345678,"Genero":0,"EMail":"a@b.org","FechaNacimiento":"1984-04-06T00:00:00"}],"VisitantesEnum":[{"NumID":"1234567890","Entrada":1,"FechaIngreso":"2021-04-06T00:56:53.3882107-05:00"}]}

@@ -31,10 +31,6 @@
     <None Remove="ClientApp\src\app\hinchastotal\hinchastotal.component.ts" />
     <None Remove="ClientApp\src\app\hinchas\hinchas.component.css" />
     <None Remove="ClientApp\src\app\hinchas\hinchas.component.css" />
-    <None Remove="ClientApp\src\app\hinchas\hinchas.component.html" />
-    <None Remove="ClientApp\src\app\hinchas\hinchas.component.html" />
-    <None Remove="ClientApp\src\app\hinchas\hinchas.component.ts" />
-    <None Remove="ClientApp\src\app\hinchas\hinchas.component.ts" />
     <None Remove="ClientApp\src\app\salidas\salidas.component.css" />
     <None Remove="ClientApp\src\app\salidas\salidas.component.css" />
   </ItemGroup>
@@ -42,10 +38,6 @@
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\aforototal\aforototal.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\hinchastotal\hinchastotal.component.ts" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ClientApp\src\app\hinchas\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
